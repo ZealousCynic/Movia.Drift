@@ -72,3 +72,10 @@
     </tr>
   </table>
 
+  <mat-paginator
+    [hidePageSize]="true"
+    [pageSize]="10"
+    [length]="paginationDto.TotalCount"
+    (page)="getPaginatorData($event.pageIndex)"
+  ></mat-paginator>
+</div>

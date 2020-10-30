@@ -169,7 +169,8 @@
     "longitude":"Longitude",
     "latitude":"Latitude",
     "zone":"Zone",
-    "option":"Muligheder"
+    "option":"Muligheder",
+    "success_deleted_bus_stop":"Muligheder"
   }, 
   "generel": {
     "submit": "Gem",
