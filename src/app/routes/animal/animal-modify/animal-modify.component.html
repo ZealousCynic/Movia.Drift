@@ -1,0 +1,16 @@
+<!-- <page-header title="Animal Profile" showBreadCrumb=false></page-header> -->
+<!-- Profile <p>animal-modify works! ID. {{animalID}} aaaa</p> -->
+<mat-tab-group> 
+    <mat-tab label="{{'animalTable.profile' | translate}}">
+      <app-animal-animal-modify-profile [animalID]=animalID></app-animal-animal-modify-profile>
+    </mat-tab>
+    <mat-tab label="{{'animalTable.album' | translate}}">
+      <app-animal-animal-modify-album [animalID]=animalID></app-animal-animal-modify-album>
+    </mat-tab>
+    <mat-tab label="{{'animalTable.sound' | translate}}"> 
+      <app-animal-animal-modify-sound  [animalID]=animalID></app-animal-animal-modify-sound>
+    </mat-tab>
+    <mat-tab label="{{'animalTable.qr_code' | translate}}">
+      <app-animal-animal-modify-QRCode  [animalID]=animalID></app-animal-animal-modify-QRCode>
+    </mat-tab>
+</mat-tab-group> 

@@ -1,0 +1,27 @@
+.form-field-full .mat-form-field {
+    width: 80%;
+}
+
+.qrCode {
+    width: 220px;
+    height: 220px;
+    background-color: rgb(241, 237, 237);
+    background-image: url(/assets/images/qr_code_background.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    float: left;
+    display: inline;
+}
+
+.shadow {
+    -moz-box-shadow: 2px 2px 2px #888;
+    -webkit-box-shadow: 2px 2px 2px #888;
+    box-shadow: 2px 2px 2px #888;
+}
+
+.qrimage {
+    width: 190px;
+    height: 190px;
+    margin: 15px;
+}

@@ -1,0 +1,137 @@
+{
+  "menu": [{
+      "route": "dashboard",
+      "name": "dashboard",
+      "type": "link",
+      "icon": "dashboard",
+      "badge": {
+        "color": "red-500",
+        "value": "5"
+      }
+    },
+    {
+      "route": "animal",
+      "name": "animal",
+      "type": "sub",
+      "icon": "ballot",
+      "children": [{
+          "route": "animal-overview",
+          "name": "overview",
+          "type": "link"
+        },
+        {
+          "route": "animal-create",
+          "name": "create",
+          "type": "link"
+        }        
+      ]
+    },
+    {
+      "route": "bus-route",
+      "name": "route",
+      "type": "sub",
+      "icon": "wrap_text",
+      "children": [{
+          "route": "route-overview",
+          "name": "overview",
+          "type": "link"
+        },   
+        {
+          "route": "route-info-modify",
+          "name": "create",
+          "type": "link"
+        }        
+      ]
+    },
+    {
+      "route": "bus",
+      "name": "bus",
+      "type": "sub",
+      "icon": "directions_bus",
+      "children": [{
+          "route": "bus-overview",
+          "name": "overview",
+          "type": "link"
+        },   
+        {
+          "route": "bus-info-modify",
+          "name": "create",
+          "type": "link"
+        }   
+      ]
+    },
+    {
+      "route": "bus-stop",
+      "name": "stop",
+      "type": "sub",
+      "icon": "nature_people",
+      "children": [{
+          "route": "stop-overview",
+          "name": "overview",
+          "type": "link"
+        },   
+        {
+          "route": "stop-info-modify",
+          "name": "create",
+          "type": "link"
+        }   
+      ]
+    },
+    {
+      "route": "bus-driver",
+      "name": "driver",
+      "type": "sub",
+      "icon": "airline_seat_recline_normal",
+      "children": [{
+          "route": "driver-overview",
+          "name": "overview",
+          "type": "link"
+        },   
+        {
+          "route": "driver-info-modify",
+          "name": "create",
+          "type": "link"
+        }   
+      ]
+    },
+    {
+      "route": "bus-model",
+      "name": "model",
+      "type": "sub",
+      "icon": "rv_hookup",
+      "children": [{
+          "route": "model-overview",
+          "name": "overview",
+          "type": "link"
+        },   
+        {
+          "route": "model-info-modify",
+          "name": "create",
+          "type": "link"
+        }   
+      ]
+    },      
+    {
+      "route": "sessions",
+      "name": "sessions",
+      "type": "sub",
+      "icon": "question_answer",
+      "children": [{
+          "route": "403",
+          "name": "403",
+          "type": "link"
+        },
+        {
+          "route": "404",
+          "name": "404",
+          "type": "link"
+        },
+        {
+          "route": "500",
+          "name": "500",
+          "type": "link"
+        }
+      ]
+    }
+  ]
+}

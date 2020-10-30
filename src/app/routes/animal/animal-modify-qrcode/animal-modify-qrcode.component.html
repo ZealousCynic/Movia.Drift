@@ -1,0 +1,31 @@
+<mat-card>
+  <form [formGroup]="profileForm" (ngSubmit)="ngSubmit()">
+    <mat-card-title>
+      <div fxFlex="98" fxLayoutAlign="end center" fxLayoutGap="15px">
+        <button mat-button (click)="ngBack()">
+          <mat-icon matTooltip="Back">arrow_back</mat-icon>
+          {{ 'generel.back' | translate }}
+        </button>
+        <button mat-raised-button color="primary" [disabled]="!profileForm.valid || isSubmitBtnDisabled">
+          {{ 'generel.generate_qrcode' | translate }}
+        </button>
+      </div>
+    </mat-card-title>
+    <div fxLayout="row warp" class="form-field-full" fxLayoutGap="2px">
+      <div fxFlex="98">
+        <mat-form-field appearance="standard">
+          <mat-label>{{ 'animalTable.qr_code_string' | translate }}</mat-label>
+          <input matInput formControlName="qrCodeString" />
+        </mat-form-field>
+      </div>
+      <div fxFlex="98">
+        <div class="qr_image_with_download">
+          <div class="qrCode shadow">
+            <!-- //{{animalQRCode.path}} -->
+            <img *ngIf="animalQRCode.path.length > 0" class="qrimage" src={{animalQRCode.path}}  alt="QRCode" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-card>

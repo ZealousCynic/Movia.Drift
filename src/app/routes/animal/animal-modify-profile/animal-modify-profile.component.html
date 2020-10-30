@@ -1,0 +1,124 @@
+<mat-card>
+  <form [formGroup]="profileForm" (ngSubmit)="ngSubmit()">
+    <mat-card-title>
+      <div fxFlex="98" fxLayoutAlign="end center" fxLayoutGap="15px" >
+        <button mat-button (click)="ngBack()">
+          <mat-icon matTooltip="Back">arrow_back</mat-icon>
+          {{'generel.back' | translate}}
+        </button>
+        <button mat-raised-button color="primary" [disabled]="!profileForm.valid || isSubmitBtnDisabled">
+          {{'generel.submit' | translate}}
+        </button>
+      </div>
+    </mat-card-title>
+    <div fxLayout="row warp" class="form-field-full" fxLayoutGap="8px">
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.name' | translate}}</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.scientificName' | translate}}</mat-label>
+          <input matInput formControlName="scientificName" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.weight' | translate}}</mat-label>
+          <input matInput formControlName="weight" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.height' | translate}}</mat-label>
+          <input matInput formControlName="height" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.lifeExpectancy' | translate}}</mat-label>
+          <input matInput formControlName="lifeExpectancy" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.pregnancy' | translate}}</mat-label>
+          <input matInput formControlName="pregnancy" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.numberOfChildren' | translate}}</mat-label>
+          <input matInput formControlName="numberOfChildren" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.birthWeight' | translate}}</mat-label>
+          <input matInput formControlName="birthWeight" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.sexualMaturity' | translate}}</mat-label>
+          <input matInput formControlName="sexualMaturity" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.food' | translate}}</mat-label>
+          <input matInput formControlName="food" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.incubationTime' | translate}}</mat-label>
+          <input matInput formControlName="incubationTime" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.animalNature' | translate}}</mat-label>
+          <mat-select formControlName="animalNature">
+            <mat-option *ngFor="let animalNature of animalNatures" [value]="animalNature.id" >
+              {{ animalNature.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.place' | translate}}</mat-label>
+          <mat-select formControlName="place">
+            <mat-option *ngFor="let place of places" [value]="place.id">
+              {{ place.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48"></div>
+
+      <div fxFlex="100">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'animalTable.description' | translate}}</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-card>

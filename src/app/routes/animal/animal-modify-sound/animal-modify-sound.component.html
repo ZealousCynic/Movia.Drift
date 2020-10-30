@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-title>
+    <div fxFlex="98" fxLayoutAlign="end center" fxLayoutGap="15px">
+      <button mat-button (click)="ngBack()">
+        <mat-icon matTooltip="Back">arrow_back</mat-icon>
+        {{ 'generel.back' | translate }}
+      </button>
+      <input type="file" #file accept=".mp3,.wav" (change)="onUploadFile(file.files)" style="display: none;" />
+      <button mat-icon-button color="primary" (click)="file.click()">
+        <mat-icon>cloud_upload</mat-icon>
+      </button>
+    </div>
+  </mat-card-title>
+  <div fxLayout="row warp" class="form-field-full" fxLayoutGap="10px">
+    <div fxFlex="32" *ngFor="let animalSound of animalSounds">
+      <mat-card>
+        <mat-card-title>
+            <span class="f-s-14">{{getFilename(animalSound.path)}}</span>
+        </mat-card-title>
+        <mat-card-content>
+          <audio controls>
+            <source src="{{animalSound.path}}" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-icon-button matTooltip="Delete" color="warn" (click)="openDelDialog(animalSound.id)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>                
+  </div>
+</mat-card>
