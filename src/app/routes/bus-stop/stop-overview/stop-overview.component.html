@@ -1,3 +1,74 @@
 <page-header></page-header>
 
-<p>stop-overview works!</p>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>{{ 'bus_stop.id' | translate }}</th>
+      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+    </ng-container>
+
+    <!-- label Column -->
+    <ng-container matColumnDef="label">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ 'bus_stop.label' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.label }}</td>
+    </ng-container>
+
+    <!-- description Stop Nummer -->
+    <ng-container matColumnDef="busStopNumber">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ 'bus_stop.busStopNumber' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.stopNumber }}</td>
+    </ng-container>
+
+    <!-- description Longitude -->
+    <ng-container matColumnDef="longitude">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ 'bus_stop.longitude' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.longitude }}</td>
+    </ng-container>
+
+    <!-- description Latitude -->
+    <ng-container matColumnDef="latitude">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ 'bus_stop.latitude' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.latitude }}</td>
+    </ng-container>
+
+    <!-- description Latitude -->
+    <ng-container matColumnDef="zone">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ 'bus_stop.zone' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.zone }}</td>
+    </ng-container>
+
+    <!-- option Column -->
+    <ng-container matColumnDef="option">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ 'bus_stop.option' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button matTooltip="Edit" color="primary" (click)="goModify(row.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Delete" color="warn" (click)="openDelDialog(row.id)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" class="row-color"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="7">No data matching the filter</td>
+    </tr>
+  </table>
+
