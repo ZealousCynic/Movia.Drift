@@ -160,7 +160,13 @@
     "option": "Option",
     "route_info": "Route Information",
     "route_bus_stop": "Bus Stops",
-    "route_bus_and_driver": "Bus And Driver"
+    "route_bus_and_driver": "Bus And Driver",
+    "pick_one_bus_stop": "Pick one bus stop",
+    "success_updated_route": "Success: Updated route",
+    "success_added_bus_stop": "Success: Added bus stop",
+    "success_updated_bus_stop": "Success: Updated bus stop",
+    "success_removed_bus_stop": "Success: Removed bus stop",
+    "invalid_bus_stop": "Invalid bus stop"
   },
   "generel": {
     "submit": "Submit",

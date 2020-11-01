@@ -1,11 +1,11 @@
 <mat-tab-group> 
-    <mat-tab label="{{'bus_route.route_info' | translate}}">
-        <h1>hello world</h1>
+    <mat-tab label="{{'bus_route.route_info' | translate}}">        
+        <app-bus-route-route-info-modify [routeId]=routeId></app-bus-route-route-info-modify>
     </mat-tab>
     <mat-tab label="{{'bus_route.route_bus_stop' | translate}}">
-        <h1>hello world</h1>
+        <app-bus-route-route-busstop-modify [routeId]=routeId></app-bus-route-route-busstop-modify>
     </mat-tab>
     <mat-tab label="{{'bus_route.route_bus_and_driver' | translate}}"> 
-        <h1>hello world</h1>
+        <app-bus-route-route-busdriver-modify [routeId]=routeId></app-bus-route-route-busdriver-modify>
     </mat-tab>
 </mat-tab-group> 

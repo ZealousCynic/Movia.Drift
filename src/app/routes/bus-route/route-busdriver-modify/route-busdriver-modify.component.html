@@ -1,3 +1,42 @@
-<page-header></page-header>
+<mat-card>
+        <mat-card-title>
+        <div fxFlex="98" fxLayoutAlign="end center" fxLayoutGap="15px" >
+          <button mat-button (click)="ngBack()">
+            <mat-icon matTooltip="Back">arrow_back</mat-icon>
+            {{'generel.back' | translate}}
+          </button>
+        </div>
+      </mat-card-title>
 
-<p>route-busdriver-modify works!</p>
+      <div fxLayout="row warp"  class="form-field-full" fxLayoutGap="8px">
+        <div fxFlex="43">
+            <form>
+                <mat-form-field>
+                    <input type="text"
+                        placeholder="{{'bus_route.pick_one_bus_stop' | translate}}"
+                        aria-label="Number"
+                        matInput
+                        [formControl]="findBusControl"
+                        [matAutocomplete]="auto">
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredBusOptions | async" 
+                        [value]="option.registrationNumber + ',' + option.busModel.manufacturer">
+                        {{option.registrationNumber}},{{option.busModel.manufacturer}}
+                    </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>   
+            </form>       
+        </div>
+  
+        <div fxFlex="43">
+
+        </div> 
+
+        <div fxFlex="10" fxFlexAlign="center">
+            <button mat-raised-button color="primary" >
+                {{'generel.submit' | translate}}
+            </button>
+        </div>
+
+      </div>
+  </mat-card>

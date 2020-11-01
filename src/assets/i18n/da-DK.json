@@ -160,7 +160,13 @@
     "option": "Mulighed",
     "route_info": "Rute Information",
     "route_bus_stop": "Bus Stoppesteder",
-    "route_bus_and_driver": "Bus Og Chauffør "
+    "route_bus_and_driver": "Bus Og Chauffør",
+    "pick_one_bus_stop": "Vælg et busstoppested",
+    "success_updated_route": "Succes: Opdateret rute",
+    "success_added_bus_stop": "Succes: Tilføjet bus stoppested",
+    "success_updated_bus_stop": "Succes: Opdateret bus stoppested",
+    "success_removed_bus_stop": "Succes: Fjernet bus stoppested",
+    "invalid_bus_stop": "Ugyldigt busstoppested"
   },  
   "generel": {
     "submit": "Gem",
