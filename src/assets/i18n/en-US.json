@@ -158,15 +158,24 @@
     "label": "Route Label",
     "description": "Description",
     "option": "Option",
+    "registration_number": "Registration number",    
+    "capacity_boundary_seating_standing_place": "Capacity boundary (Seating place / Standing place)",
+    "driver": "Driver",
     "route_info": "Route Information",
     "route_bus_stop": "Bus Stops",
     "route_bus_and_driver": "Bus And Driver",
     "pick_one_bus_stop": "Pick one bus stop",
+    "pick_one_bus": "Pick one bus",
+    "pick_one_bus_driver": "Pick one driver",
     "success_updated_route": "Success: Updated route",
     "success_added_bus_stop": "Success: Added bus stop",
     "success_updated_bus_stop": "Success: Updated bus stop",
     "success_removed_bus_stop": "Success: Removed bus stop",
-    "invalid_bus_stop": "Invalid bus stop"
+    "success_added_bus": "Success: Added bus stop",
+    "success_removed_bus": "Success: Removed bus",
+    "error_add_bus": "Error: The bus or driver is already in other rute",
+    "invalid_bus_stop": "Invalid bus stop",
+    "invalid_bus_or_driver": "Invalid bus or driver"    
   },
   "generel": {
     "submit": "Submit",
@@ -176,7 +185,8 @@
     "are_you_sure_delete_this_item": "Are you sure delete this item ?",
     "yes": "Yes",
     "no": "No",
-    "seach": "Seach"
+    "seach": "Seach",
+    "add": "Add"
   },
   "apiBadRequest": {
     "Account_does_not_exist": "Account does not exist"

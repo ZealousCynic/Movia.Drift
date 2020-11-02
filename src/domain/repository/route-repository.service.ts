@@ -3,7 +3,14 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap, retry, mergeMap, repeat, expand, take, takeWhile} from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {
-  ReturnRouteDto, CreateAndUpdateRouteDto, ReturnRouteBusStopDto, ReturnBusStopWithOrderDto
+  ReturnRouteBusDto, 
+  ReturnRouteDto, 
+  CreateAndUpdateRouteDto, 
+  ReturnRouteBusStopDto, 
+  ReturnBusStopWithOrderDto,
+  ReturnRouteBusDriverlDto,
+  ReturnBusAndDriverInRouteDto,
+  BusWithDriverDto
 } from '../entity/route';
 import { environment } from './../../environments/environment';
 
@@ -88,6 +95,70 @@ export class RouteRepositoryService {
     return this.http.delete<boolean>(
         environment.apiUrlV1 + `routes/${routeId}/busstops/${busStopId}`
     );
+  }
+  
+
+  getAllBusToRoute(): Observable<Array<ReturnRouteBusDto>> {
+
+    let pageNumber : number = 1;
+
+    return this.http.get<Array<ReturnRouteBusDto>>(
+        environment.apiUrlV1 + `busses?PageNumber=${pageNumber}`
+    )
+    .pipe(
+      expand(val => this.getBusToRoute(pageNumber)),
+      map(val => {
+        pageNumber = pageNumber +1 ; 
+        return val}), 
+      takeWhile( val => Object.keys(val).length != 0)
+    );
+  }
+
+  getBusToRoute(pageNumber: number) : Observable<Array<ReturnRouteBusDto>> {
+    return this.http.get<Array<ReturnRouteBusDto>>(
+      environment.apiUrlV1 + `busses?PageNumber=${pageNumber}`
+    );
+  }
+
+  getDriverToRoute(pageNumber: number) : Observable<Array<ReturnRouteBusDriverlDto>> {
+    return this.http.get<Array<ReturnRouteBusDriverlDto>>(
+      environment.apiUrlV1 + `busdrivers?PageNumber=${pageNumber}`
+    );
   }  
+
+  getAllDriverToRoute(): Observable<Array<ReturnRouteBusDriverlDto>> {
+
+    let pageNumber : number = 1;
+
+    return this.http.get<Array<ReturnRouteBusDriverlDto>>(
+        environment.apiUrlV1 + `busdrivers?PageNumber=${pageNumber}`
+    )
+    .pipe(
+      expand(val => this.getDriverToRoute(pageNumber)),
+      map(val => {
+        pageNumber = pageNumber +1 ; 
+        return val}), 
+      takeWhile( val => Object.keys(val).length != 0)
+    );
+  }  
+  
+  getBusAndDriverToRoute(routeId : number): Observable<Array<ReturnBusAndDriverInRouteDto>> {
+    return this.http.get<Array<ReturnBusAndDriverInRouteDto>>(
+      environment.apiUrlV1 + `routes/${routeId}/busses`
+    );
+  }
+  
+  addBusWithDriverToRoute( routeId: number, busWithDriverDto: BusWithDriverDto ): Observable<boolean> {
+    return this.http.post<boolean>(
+      environment.apiUrlV1 + `routes/${routeId}/busses`,
+      busWithDriverDto
+    );
+  }
+  
+  removeBusFromRoute(routeId: number, busId: number): Observable<boolean> {
+    return this.http.delete<boolean>(
+      environment.apiUrlV1 + `routes/${routeId}/busses/${busId}`
+    );
+  }
 
 }

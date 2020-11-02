@@ -54,3 +54,24 @@ export interface ReturnRouteBusModelDto {
     height: string;
     powerTrain: string;
 }
+
+export interface ReturnRouteBusDriverlDto {
+  id: number;
+  personnelNumber: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+}
+
+export interface ReturnBusAndDriverInRouteDto {
+    bus: ReturnRouteBusDto;
+    busDriver: ReturnRouteBusDriverlDto;
+    status: number;
+    longitude: number;
+    latitude: number;
+}
+
+export interface BusWithDriverDto{
+    busID: number;
+    busDriverID: number;
+}

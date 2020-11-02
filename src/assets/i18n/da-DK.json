@@ -158,15 +158,24 @@
     "label": "Rute Label",
     "description": "Beskrivelse",
     "option": "Mulighed",
+    "registration_number": "Nummer plade",    
+    "capacity_boundary_seating_standing_place": "Kapacitet grænse (Siddeplads / Ståplads)",
+    "driver": "Chauffør",
     "route_info": "Rute Information",
     "route_bus_stop": "Bus Stoppesteder",
     "route_bus_and_driver": "Bus Og Chauffør",
     "pick_one_bus_stop": "Vælg et busstoppested",
+    "pick_one_bus": "Vælg en bus",
+    "pick_one_bus_driver": "Vælg en chauffør",
     "success_updated_route": "Succes: Opdateret rute",
     "success_added_bus_stop": "Succes: Tilføjet bus stoppested",
     "success_updated_bus_stop": "Succes: Opdateret bus stoppested",
     "success_removed_bus_stop": "Succes: Fjernet bus stoppested",
-    "invalid_bus_stop": "Ugyldigt busstoppested"
+    "success_added_bus": "Succes: Tilføjet bus",
+    "success_removed_bus": "Succes: Fjernet bus",
+    "error_add_bus": "Fejl: Bussen eller chaufføren er allerede i anden rute",
+    "invalid_bus_stop": "Ugyldigt busstoppested",
+    "invalid_bus_or_driver": "Ugyldigt bus eller chauffør"
   },  
   "generel": {
     "submit": "Gem",
@@ -176,7 +185,8 @@
     "are_you_sure_delete_this_item": "Er du sikker på at slette dette element ?",
     "yes": "Ja",
     "no": "Nej",
-    "seach": "Søg"    
+    "seach": "Søg",
+    "add": "Tilføj"
   },  
   "apiBadRequest": {
     "Account_does_not_exist": "Konto findes ikke"
