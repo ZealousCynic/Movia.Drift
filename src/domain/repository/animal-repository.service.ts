@@ -44,7 +44,6 @@ export class AnimalRepositoryService {
     let params = new HttpParams()
       .set('PageNumber', paginationDto.CurrentPage.toString())
       .set('PageSize', paginationDto.PageSize.toString());
-
     return this.http
       .get<any>(environment.apiUrlV1 + 'animalprofiles', { params: params, observe: 'response' })
       .pipe(
