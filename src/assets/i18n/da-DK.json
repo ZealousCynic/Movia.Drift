@@ -83,7 +83,7 @@
     "driver.create": "Opret Chauffør",
     "model": "Bus model",
     "model.overview": "Oversigt",
-    "model.create": "Opret Model"          
+    "model.create": "Opret Model"
   },
   "validations": {
     "required": "This field is required",
@@ -121,7 +121,7 @@
   },
   "animalTable": {
     "id": "ID",
-    "name": "Navn", 
+    "name": "Navn",
     "scientificName": "Videnskabeligt navn",
     "weight": "Vægt",
     "height": "Højde",
@@ -134,7 +134,7 @@
     "incubationTime": "Rugetid",
     "description": "Beskrivelse",
     "animalNature": "Art",
-    "animalStatus": "Status", 
+    "animalStatus": "Status",
     "place": "Bygning",
     "option": "Mulighed",
     "profile": "Profil",
@@ -176,7 +176,25 @@
     "error_add_bus": "Fejl: Bussen eller chaufføren er allerede i anden rute",
     "invalid_bus_stop": "Ugyldigt busstoppested",
     "invalid_bus_or_driver": "Ugyldigt bus eller chauffør"
-  },  
+  },
+  "bus_stop":{
+    "id":"ID",
+    "label":"Bus Stop",
+    "busStopNumber":"Bus Stop Nummer",
+    "longitude":"Longitude",
+    "latitude":"Latitude",
+    "zone":"Zone",
+    "option":"Muligheder",
+    "success_deleted_bus_stop":"Muligheder"
+  }, 
+  "bus_driver": {
+    "id": "ID",
+    "firstName": "Fornavn",
+    "lastName": "Efternavn",
+    "phoneNumber": "Telefonummer",
+    "personnelNumber": "CPR.",
+    "option": "Mulighed"
+  },
   "generel": {
     "submit": "Gem",
     "back": "Tilbage",
@@ -187,7 +205,6 @@
     "no": "Nej",
     "seach": "Søg",
     "add": "Tilføj"
-  },  
   "apiBadRequest": {
     "Account_does_not_exist": "Konto findes ikke"
   }
