@@ -204,7 +204,7 @@
     "yes": "Ja",
     "no": "Nej",
     "seach": "Søg",
-    "add": "Tilføj"
+    "add": "Tilføj"},
   "apiBadRequest": {
     "Account_does_not_exist": "Konto findes ikke"
   }
