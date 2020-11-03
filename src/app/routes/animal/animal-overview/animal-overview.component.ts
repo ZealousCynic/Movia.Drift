@@ -8,7 +8,6 @@ import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { forkJoin } from 'rxjs';
 import { AnimalAnimalDeleteDialogComponent } from '../animal-delete-dialog/animal-delete-dialog.component';
-
 import { PaginationDto, AnimalRepositoryService } from '../../../../domain/index';
 
 export interface DelDialogData {
@@ -76,7 +75,7 @@ export class AnimalAnimalOverviewComponent implements AfterViewInit {
     //this.dataSource = new MatTableDataSource(this.animalProfiles);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngAfterViewInit() {
     this.getAnimalProfiles();

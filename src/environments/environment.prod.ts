@@ -3,6 +3,6 @@ export const environment = {
   production: true,
   useHash: true,
   hmr: false,
-  apiUrlV1: 'https://api.web1.eu.ngrok.io/api/v1/',
-  assetsResourcesUrl: 'https://api.web1.eu.ngrok.io/'
+  apiUrlV1: 'http://svendeprove.web-api.eu.ngrok.io/api/v1/',
+  assetsResourcesUrl: 'http://svendeprove.web-api.eu.ngrok.io/'
 };

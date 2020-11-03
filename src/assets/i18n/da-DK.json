@@ -83,7 +83,7 @@
     "driver.create": "Opret Chauffør",
     "model": "Bus model",
     "model.overview": "Oversigt",
-    "model.create": "Opret Model"          
+    "model.create": "Opret Model"
   },
   "validations": {
     "required": "This field is required",
@@ -121,7 +121,7 @@
   },
   "animalTable": {
     "id": "ID",
-    "name": "Navn", 
+    "name": "Navn",
     "scientificName": "Videnskabeligt navn",
     "weight": "Vægt",
     "height": "Højde",
@@ -134,7 +134,7 @@
     "incubationTime": "Rugetid",
     "description": "Beskrivelse",
     "animalNature": "Art",
-    "animalStatus": "Status", 
+    "animalStatus": "Status",
     "place": "Bygning",
     "option": "Mulighed",
     "profile": "Profil",
@@ -161,7 +161,15 @@
     "route_info": "Rute Information",
     "route_bus_stop": "Bus Stoppesteder",
     "route_bus_and_driver": "Bus Og Chauffør "
-  },  
+  },
+  "bus_driver": {
+    "id": "ID",
+    "firstName": "Fornavn",
+    "lastName": "Efternavn",
+    "phoneNumber": "Telefonummer",
+    "personnelNumber": "CPR.",
+    "option": "Mulighed"
+  },
   "generel": {
     "submit": "Gem",
     "back": "Tilbage",
@@ -170,8 +178,8 @@
     "are_you_sure_delete_this_item": "Er du sikker på at slette dette element ?",
     "yes": "Ja",
     "no": "Nej",
-    "seach": "Søg"    
-  },  
+    "seach": "Søg"
+  },
   "apiBadRequest": {
     "Account_does_not_exist": "Konto findes ikke"
   }

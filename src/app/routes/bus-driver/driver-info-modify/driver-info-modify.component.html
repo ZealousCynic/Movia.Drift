@@ -1,3 +1,49 @@
-<page-header></page-header>
+<mat-card>
+  <form [formGroup]="busDriverForm" (ngSubmit)="ngSubmit()">
+    <mat-card-title>
+      <div fxFlex="98" fxLayoutAlign="end center" fxLayoutGap="15px">
+        <button mat-button (click)="ngBack()">
+          <mat-icon matTooltip="Back">arrow_back</mat-icon>
+          {{'generel.back' | translate}}
+        </button>
+        <button mat-raised-button color="primary"
+                [disabled]="!busDriverForm.valid || isSubmitBtnDisabled">
+          {{'generel.submit' | translate}}
+        </button>
+      </div>
+    </mat-card-title>
 
-<p>driver-info-modify works!</p>
+    <div fxLayout="row warp" class="form-field-full" fxLayoutGap="8px">
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'bus_driver.firstName' | translate}}</mat-label>
+          <input matInput formControlName="firstName" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'bus_driver.lastName' | translate}}</mat-label>
+          <input matInput formControlName="lastName" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'bus_driver.phoneNumber' | translate}}</mat-label>
+          <input matInput formControlName="phoneNumber" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'bus_driver.personnelNumber' | translate}}</mat-label>
+          <input matInput formControlName="personnelNumber" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48"></div>
+
+    </div>
+  </form>
+</mat-card>
