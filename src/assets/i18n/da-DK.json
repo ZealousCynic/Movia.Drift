@@ -161,17 +161,7 @@
     "route_info": "Rute Information",
     "route_bus_stop": "Bus Stoppesteder",
     "route_bus_and_driver": "Bus Og Chauffør "
-  },
-  "bus_stop":{
-    "id":"ID",
-    "label":"Bus Stop",
-    "busStopNumber":"Bus Stop Nummer",
-    "longitude":"Longitude",
-    "latitude":"Latitude",
-    "zone":"Zone",
-    "option":"Muligheder",
-    "success_deleted_bus_stop":"Muligheder"
-  }, 
+  },  
   "generel": {
     "submit": "Gem",
     "back": "Tilbage",
