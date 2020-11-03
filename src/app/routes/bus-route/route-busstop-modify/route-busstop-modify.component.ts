@@ -68,7 +68,12 @@ export class BusRouteRouteBusstopModifyComponent implements OnInit {
       {
         isValidBusStop = true;
         
-        let orderOfBusStop = this.busStopOfRoute[this.busStopOfRoute.length -1 ].order + 1;
+        let orderOfBusStop = 0;
+        if (this.busStopOfRoute.length > 0 )
+        {
+          orderOfBusStop = this.busStopOfRoute[this.busStopOfRoute.length -1 ].order + 1;          
+        }
+        
         let successMessageTranslate$ = this.translateService.get('bus_route.success_added_bus_stop');
         let addBusStopToRoute$ = this.routeRepositoryService.addBusStopToRoute(
           this.routeId, 
