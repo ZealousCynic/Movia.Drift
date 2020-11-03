@@ -44,7 +44,6 @@ export class BusRouteRouteOverviewComponent implements AfterViewInit {
   getRoutes() {
     this.routeRepositoryService.getRoutes().subscribe(
       res => {
-        console.log(res);
         this.dataSource = new MatTableDataSource(res);
       },
       err => {

@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+}
+
+.mat-column-registrationNumber{
+    min-width: 190px;
+}
+
+ .mat-column-capacityBoundary{
+    min-width: 230px;
+}
+
+.mat-column-driver{
+    min-width: 110px;
+}
+
+.mat-column-option{
+    min-width: 110px;
+}
+
+ tr.row-color:hover {
+    background: whitesmoke;
+}
+  
+tr.row-color:active {
+    background: #efefef;
+}
