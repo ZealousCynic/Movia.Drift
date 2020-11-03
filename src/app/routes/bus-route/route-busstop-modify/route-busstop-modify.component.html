@@ -1,3 +1,78 @@
-<page-header></page-header>
+<mat-card>
+    <form>
+      <mat-card-title>
+        <div fxFlex="98" fxLayoutAlign="end center" fxLayoutGap="15px" >
+          <button mat-button (click)="ngBack()">
+            <mat-icon matTooltip="Back">arrow_back</mat-icon>
+            {{'generel.back' | translate}}
+          </button>
+        </div>
+      </mat-card-title>
+      <div fxLayout="row warp" class="form-field-full" fxLayoutGap="8px">
 
-<p>route-busstop-modify works!</p>
+        <div fxFlex="35">
+          <div fxLayout="column">
+            <!--Bus stop seach bar-->
+            <div>
+              <!--Bus stop select option-->
+              <div fxFlex="95">
+                <form>
+                    <mat-form-field>
+                      <input type="text"
+                             placeholder="{{'bus_route.pick_one_bus_stop' | translate}}"
+                             aria-label="Number"
+                             matInput
+                             [formControl]="findBusStopControl"
+                             [matAutocomplete]="auto">
+                      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async" 
+                          [value]="option.label + ',' + option.stopNumber">
+                          {{option.label}},{{option.stopNumber}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                </form>
+              </div>
+              <!--Add button for add bus stop to route-->
+              <div fxFlex="5">
+                <button mat-icon-button matTooltip="Add" color="primary" (click)="addBusStop()">
+                    <mat-icon>add_location</mat-icon>
+                </button>
+              </div>
+            </div>
+            <!--List for Bus stop of route -->
+            <div>
+              <div cdkDropListGroup>
+                <div class="busstop-container">
+                  <div
+                    cdkDropList
+                    [cdkDropListData]="busStopOfRoute"
+                    class="busstop-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="busstop-box" fxLayout="row warp" *ngFor="let item of busStopOfRoute" cdkDrag>
+                      <!--Bus stop info.-->
+                      <div fxFlex="90">
+                        <h4>{{item.busStop.label}}</h4>
+                        No.: {{item.busStop.stopNumber}}
+                      </div>
+                      <!--Delete button for remove busstop from route -->
+                      <div fxFlex="10">
+                        <button mat-icon-button matTooltip="Remove" color="warn" (click)="removeBusStop(item.busStop.id)">
+                          <mat-icon>delete_forever</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>              
+            </div>
+          </div>
+        </div>
+  
+        <div fxFlex="60">
+            <h1>hello world 456 !</h1>
+        </div> 
+
+      </div>
+    </form>
+  </mat-card>
