@@ -3,6 +3,7 @@ export * from './entity/integrations';
 export * from './entity/animal';
 export * from './entity/place';
 export * from './entity/route';
+export * from './entity/busdriver';
 
 //Service
 export * from './repository/integration-repository.service';
