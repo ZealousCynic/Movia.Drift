@@ -31,21 +31,25 @@ export class DashboardMapMapComponent implements AfterViewInit {
     });
     tiles.addTo(this.map);
 
-    this.busRoutes.forEach(busRoute => {
-      let wayPoints: Array<L.latLng>;
-      busRoute.routeCordinates.forEach(cordinate => {
-            wayPoints.push(L.latLng(cordinate.latitude,cordinate.longitude));
+    if (this.busRoutes !== undefined) {
+      this.busRoutes.forEach(busRoute => {
+        // create waypoins
+        let wayPoints: Array<L.latLng>;
+        busRoute.routeCordinates.forEach(cordinate => {
+          wayPoints.push(L.latLng(cordinate.latitude, cordinate.longitude));
+        });
+
+        console.log(wayPoints);
+
+        // set waypoints
+        L.Routing.control({
+          waypoints: [
+            wayPoints
+          ]
+        }
+        ).addTo(this.map);
+
       });
-
-      console.log(wayPoints);
-
-      L.Routing.control({
-        waypoints: [
-          wayPoints
-        ]
-      }
-      ).addTo(this.map);
-
-    });
+    }
   }
 }

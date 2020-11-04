@@ -14,7 +14,7 @@ export class MapRepositoryService {
   getRunningBusses(): Observable<Array<RunningBus>> {
     return this.http.get<Array<RunningBus>>(
       environment.apiUrlV1 + 'runningbusses'
-      );
-    }
-    
+    );
   }
+    
+}
