@@ -7,16 +7,15 @@ import { mapRoute } from 'domain/entity/map';
 import { MapRepositoryService } from 'domain/repository/map-repository.service';
 import { ToastrService } from 'ngx-toastr';
 import { RouteRepositoryService } from 'domain/repository/route-repository.service';
-import { ReturnBusStopWithOrderDto } from 'domain/index';
+import { ReturnBusStopWithOrderDto, ReturnRouteBusStopDto } from 'domain/index';
 
 @Component({
   selector: 'app-dashboard-map-map-test',
   templateUrl: './map-test.component.html',
   styleUrls: ['./map-test.component.scss']
 })
-export class DashboardMapMapTestComponent implements AfterViewInit {
-  private busRoutes: Array<mapRoute>;
-  private runningBusses: Array<RunningBus>
+export class DashboardMapMapTestComponent implements OnInit {
+  public mapRoute:Array<ReturnBusStopWithOrderDto>;
 
   constructor(
     private router: Router,
@@ -26,51 +25,17 @@ export class DashboardMapMapTestComponent implements AfterViewInit {
     private mapRepositoryService: MapRepositoryService,
     private routeRepositoryService: RouteRepositoryService
   ) { }
-  ngAfterViewInit(): void {
-    this.getRunningBusses();
+  ngOnInit(): void {
+    this.getTestRoute();
   }
 
-  // setup as a fork join
-  getRunningBusses() {
-    this.mapRepositoryService.getRunningBusses().subscribe(
-      res => {
-        this.runningBusses = [];
-        this.runningBusses = res;
-        this.getMapArray();
-      },
-      err => {
-        console.log('err');
-      }
-    );
-  }
-
-  getMapArray() {
-    if (this.runningBusses !== undefined) {
-      console.log("test test");
-      console.log(this.runningBusses);
-      this.runningBusses.forEach(runningBus => {
-        let mapRouteObj: mapRoute;
-
-        this.routeRepositoryService.getBusStopByRoute(runningBus.routeID).subscribe(res => {
-          res.forEach(busStop => {
-            mapRouteObj.routeCordinates.push({
-              latitude: busStop.busStop.latitude,
-              longitude: busStop.busStop.longitude
-            });
-          });
-        });
-
-        console.log(runningBus);
-        mapRouteObj.bus = {
-          cordinates: {
-            latitude: runningBus.latitude,
-            longitude: runningBus.longitude
-          },
-          busNumber: runningBus.bus.registrationNumber,
-        };
-      });
-      console.log(this.busRoutes);
-    }
+  getTestRoute(){
+    this.routeRepositoryService.getBusStopByRoute(1).subscribe(busStops=>{
+      this.mapRoute = [];
+      this.mapRoute = busStops;
+      console.log("set map route");
+      console.log(this.mapRoute);
+    });
   }
 
 }

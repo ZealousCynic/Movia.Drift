@@ -25,16 +25,6 @@ export interface RunningBus {
     latitude: number;
 }
 
-export interface RunningBusWithRouteBusStops {
-    id: number;
-    route: Array<ReturnBusStopWithOrderDto>;
-    bus: BusDto;
-    busDriver: BusDriverDto;
-    status: number;
-    longitude: number;
-    latitude: number;
-}
-
 export interface BusDto {
     id: number;
     registrationNumber: string;
