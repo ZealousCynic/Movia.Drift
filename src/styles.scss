@@ -6,3 +6,9 @@
 @import 'styles/helpers';
 @import 'styles/plugins';
 @import "~leaflet/dist/leaflet.css";
+@import "~leaflet-routing-machine/dist/leaflet-routing-machine.css";
+
+
+.leaflet-routing-container.leaflet-bar.leaflet-control {
+    display: none;
+  }
