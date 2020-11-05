@@ -195,6 +195,19 @@
     "personnelNumber": "CPR.",
     "option": "Mulighed"
   },
+
+  "bus_model": {
+    "id": "ID",
+    "manufacturer": "Fabrikant",
+    "model": "Model",
+    "length": "Længde",
+    "width": "Bredde",
+    "height": "Højde",
+    "powerTrain": "Motor",
+    "option": "Mulighed",
+    "success_updated_bus_model": "Succes: Opdateret bus model",
+    "success_removed_bus_model": "Succes: Fjernet bus model"
+  },  
   "generel": {
     "submit": "Gem",
     "back": "Tilbage",

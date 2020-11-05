@@ -7,6 +7,7 @@ import { BusRouteRouteWrapperModifyComponent } from './route-wrapper-modify/rout
 import { BusRouteRouteBusstopModifyComponent } from './route-busstop-modify/route-busstop-modify.component';
 import { BusRouteRouteBusdriverModifyComponent } from './route-busdriver-modify/route-busdriver-modify.component';
 import { BusRouteRouteDeleteDialogComponent } from './route-delete-dialog/route-delete-dialog.component';
+import { DashboardMapModule } from '../dashboard-map/dashboard-map.module';
 
 const COMPONENTS = [BusRouteRouteOverviewComponent, BusRouteRouteInfoModifyComponent, BusRouteRouteWrapperModifyComponent, BusRouteRouteBusstopModifyComponent, BusRouteRouteBusdriverModifyComponent, BusRouteRouteDeleteDialogComponent];
 const COMPONENTS_DYNAMIC = [];
@@ -14,7 +15,8 @@ const COMPONENTS_DYNAMIC = [];
 @NgModule({
   imports: [
     SharedModule,
-    BusRouteRoutingModule
+    BusRouteRoutingModule,
+    DashboardMapModule
   ],
   declarations: [
     ...COMPONENTS,
