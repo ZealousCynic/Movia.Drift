@@ -177,6 +177,18 @@
     "invalid_bus_stop": "Invalid bus stop",
     "invalid_bus_or_driver": "Invalid bus or driver"    
   },
+  "bus_model": {
+    "id": "ID",
+    "manufacturer": "Manufacturer",
+    "model": "Model",
+    "length": "Length",
+    "width": "Width",
+    "height": "Height",
+    "powerTrain": "Power Train",
+    "option": "Option",
+    "success_updated_bus_model": "Success: Updated bus model",
+    "success_removed_bus_model": "Success: Deleted bus model"
+  },
   "generel": {
     "submit": "Submit",
     "back": "Back",
