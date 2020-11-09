@@ -1,10 +1,14 @@
+import { Passengers, RunningBus } from './../../../../domain/entity/map';
+import { mergeMap } from 'rxjs/operators';
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { RunningBus } from 'domain/entity/map';
 import { ReturnBusStopWithOrderDto } from 'domain/index';
 import { MapRepositoryService } from 'domain/repository/map-repository.service';
+import { request } from 'http';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { element } from 'protractor';
+import { concat, forkJoin, interval, Subscription } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 
 export interface BusMarker {
   bus: RunningBus;
@@ -18,85 +22,97 @@ export interface BusMarker {
 })
 
 export class DashboardMapShowRunningBussesComponent implements OnInit, AfterViewInit {
-  runningBusses: Array<RunningBus>;
+  //runningBusses: Array<RunningBus>;
   selectedRunningBus: RunningBus;
   private map;
   marker = new Array<BusMarker>();
+  subscription: Subscription;
+  source = interval(2000);
+  
+
 
   constructor(
     private mapRepositoryService: MapRepositoryService
   ) { }
-  ngAfterViewInit(): void {
-    this.getBusses();
+  async ngAfterViewInit(): Promise<void> {
+    //this.getBusses();
+    
   }
 
   ngOnInit() {
     this.initMap();
+    this.subscription = this.source.subscribe(val => this.getBusses());
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   ngOnChanges() {
-    this.changeMapRunningBusses(this.runningBusses);
+    this.getBusses();
   }
   // update to get all running busses and there current passengers
   getBusses() {
-    this.mapRepositoryService.getRunningBusses().subscribe(res => {
-      this.runningBusses = res;
-
-      console.log(res);
-
-      // get passenger information
-      this.runningBusses.forEach(runningBus => {
-        this.mapRepositoryService.getRunningBusPassengers(runningBus.bus.registrationNumber).subscribe(res => {
-          // set the passenger information
-          runningBus.passengers = res;
-          console.log();
+    this.mapRepositoryService.getRunningBusses().toPromise().then(res => {
+      res.forEach(runningBus => {
+        this.mapRepositoryService.getRunningBusPassengers(runningBus.bus.registrationNumber).toPromise()
+          .then(
+            val => {
+              runningBus.passengers = val;
+            }
+          ).catch(
+            err => {
+              //console.log(err);
+              runningBus.passengers = undefined;
+            }
+          ).finally(() => {
+            this.setMarker(runningBus);
         });
       });
-
-      this.changeMapRunningBusses(this.runningBusses);
-    },
-      err => {
-        console.log(err);
-      });
+    }, err => {
+      console.log(err);
+    });
   }
 
-  changeMapRunningBusses(runningBusses:Array<RunningBus>) {
-    for (let i = 0; i < runningBusses.length; i++) {
-      const element = runningBusses[i];
 
-      // check if marker exsists
-      // if not create if it does exsists update marker and override
 
-      var updateBus = this.marker.find(marker => marker.bus.id == element.id);
+  setMarker(runningBusses: RunningBus) {
 
-      if (updateBus != undefined) {
-        // update current marker
-        updateBus.marker.setIcon()
-      } else {
-        // create new marker
-        this.marker.push({ bus: element, marker: this.createMarker(element) });
-        let popupMessage = '<b>' + element.busDriver.firstName + ' ' + element.busDriver.lastName + '</b><br>Route ID ' + element.routeID + '<br>Bus Registration ' + element.bus.registrationNumber;
 
-        this.marker[i].marker.addTo(this.map)
-          .bindPopup(popupMessage)
-          .on("click", () => {
-            this.markerOnClick(element.id);
-          });
-      }
+    // check if marker exsists
+    // if not create if it does exsists update marker and override
 
+    var updateBus = this.marker.find(marker => marker.bus.id == runningBusses.id);
+
+    if (updateBus != undefined) {
+      // update current marker
+      updateBus.marker.setIcon()
+    } else {
+      // create new marker
+      let tempMarker = { bus: runningBusses, marker: this.createMarker(runningBusses) };
+      let popupMessage = '<b>' + runningBusses.busDriver.firstName + ' ' + runningBusses.busDriver.lastName + '</b><br>Route ID ' + runningBusses.routeID + '<br>Bus Registration ' + runningBusses.bus.registrationNumber;
+
+      tempMarker.marker.addTo(this.map)
+        .bindPopup(popupMessage)
+        .on("click", () => {
+          this.markerOnClick(runningBusses.id);
+        });
+
+      this.marker.push(tempMarker);
     }
+
   }
 
   createMarker(runningBus: RunningBus): L.marker {
     var marker;
-    console.log("test see me" + runningBus.id);
-    console.log(runningBus.passengers != undefined);
-    if (runningBus.passengers != undefined) {
-      var currentPassenger = runningBus.passengers.total;
-      var maxAllowed = runningBus.bus.seatingPlace + runningBus.bus.standingPlace;
 
-      var temp = currentPassenger / maxAllowed;
-      console.log(temp);
+    console.log("test see me ", runningBus.passengers);
+    console.log(runningBus.passengers === undefined);
+
+    if (runningBus.passengers != undefined) {
+      var temp = (runningBus.passengers.total / runningBus.bus.capacityBoundary) * 100;
+
+      //console.log("Temp ",runningBus.passengers.total , runningBus.bus.capacityBoundary , runningBus.passengers.total / runningBus.bus.capacityBoundary * 100);
       if (temp >= 75) {
         marker = new L.marker([runningBus.longitude, runningBus.latitude], { icon: this.busIconDanger });
       } else if (temp >= 50) {
@@ -104,6 +120,7 @@ export class DashboardMapShowRunningBussesComponent implements OnInit, AfterView
       } else {
         marker = new L.marker([runningBus.longitude, runningBus.latitude], { icon: this.busIcon });
       }
+
     } else {
       marker = new L.marker([runningBus.longitude, runningBus.latitude], { icon: this.busIconUnknown });
     }
@@ -119,11 +136,11 @@ export class DashboardMapShowRunningBussesComponent implements OnInit, AfterView
 
   // click on marker
   markerOnClick(id) {
-    console.log(id);
-    let bus = this.runningBusses.find(element => element.id == id);
+    // console.log(id);
+    let marker = this.marker.find(element => element.bus.id == id);
 
-    if (bus !== undefined) {
-      this.selectedRunningBus = bus;
+    if (marker.bus !== undefined) {
+      this.selectedRunningBus = marker.bus;
     }
   }
 
