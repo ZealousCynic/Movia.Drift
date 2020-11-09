@@ -1,14 +1,15 @@
-<!-- <div fxLayout="row" fxLayoutAlign="space-around center"> -->
-
-  <div fxFlex="50" id="map-container">
-    <div class="map-frame">
-      <div id="map"></div>
+<div fxLayout="row" fxLayoutAlign="space-around center" class="height">
+  <div fxFlex="68" class="height">
+    <div class="map-container">
+      <div class="map-frame">
+        <div id="map"></div>
+      </div>
     </div>
   </div>
 
-  <div fxFlex="50">
-    <app-dashboard-map-running-bus-details  [selectedBus]="selectedRunningBus">
+  <div fxFlex="28">
+    <app-dashboard-map-running-bus-details [selectedBus]="selectedRunningBus">
     </app-dashboard-map-running-bus-details>
 
   </div>
-<!-- </div> -->
+</div>
