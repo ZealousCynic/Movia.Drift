@@ -21,23 +21,19 @@ export interface BusMarker {
   styleUrls: ['./show-running-busses.component.scss']
 })
 
-export class DashboardMapShowRunningBussesComponent implements OnInit, AfterViewInit {
+export class DashboardMapShowRunningBussesComponent implements OnInit {
   //runningBusses: Array<RunningBus>;
   selectedRunningBus: RunningBus;
   private map;
   marker = new Array<BusMarker>();
   subscription: Subscription;
-  source = interval(2000);
-  
+  source = interval(4000);
+
 
 
   constructor(
     private mapRepositoryService: MapRepositoryService
   ) { }
-  async ngAfterViewInit(): Promise<void> {
-    //this.getBusses();
-    
-  }
 
   ngOnInit() {
     this.initMap();
@@ -61,66 +57,66 @@ export class DashboardMapShowRunningBussesComponent implements OnInit, AfterView
               runningBus.passengers = val;
             }
           ).catch(
-            err => {
-              //console.log(err);
+            temp => {
               runningBus.passengers = undefined;
             }
           ).finally(() => {
             this.setMarker(runningBus);
-        });
+          });
       });
-    }, err => {
-      console.log(err);
     });
   }
 
 
 
   setMarker(runningBusses: RunningBus) {
-
-
     // check if marker exsists
     // if not create if it does exsists update marker and override
+    let popupMessage = '<b>' + runningBusses.busDriver.firstName + ' ' + runningBusses.busDriver.lastName + '</b><br>Route ID ' + runningBusses.routeID + '<br>Bus Registration ' + runningBusses.bus.registrationNumber;
+    let busMarker = { bus: null, marker: null };
 
-    var updateBus = this.marker.find(marker => marker.bus.id == runningBusses.id);
+    busMarker.marker = this.createMarker(runningBusses);
+    busMarker.bus = runningBusses;
 
-    if (updateBus != undefined) {
-      // update current marker
-      updateBus.marker.setIcon()
-    } else {
-      // create new marker
-      let tempMarker = { bus: runningBusses, marker: this.createMarker(runningBusses) };
-      let popupMessage = '<b>' + runningBusses.busDriver.firstName + ' ' + runningBusses.busDriver.lastName + '</b><br>Route ID ' + runningBusses.routeID + '<br>Bus Registration ' + runningBusses.bus.registrationNumber;
+    var updateBus = this.marker.findIndex(marker => marker.bus.id == runningBusses.id);
+    if (updateBus != -1) {
+      this.markerDelAgain(this.marker[updateBus].marker);
 
-      tempMarker.marker.addTo(this.map)
+      this.marker[updateBus].marker = busMarker.marker;
+      this.marker[updateBus].bus = busMarker.bus;
+
+      this.marker[updateBus].marker.addTo(this.map)
         .bindPopup(popupMessage)
         .on("click", () => {
           this.markerOnClick(runningBusses.id);
         });
 
-      this.marker.push(tempMarker);
-    }
+    } else {
+      this.marker.push({ bus: runningBusses, marker: busMarker.marker });
 
+      let index = this.marker.findIndex(marker => marker.bus.id == runningBusses.id);
+
+      this.marker[index].marker.addTo(this.map)
+        .bindPopup(popupMessage)
+        .on("click", () => {
+          this.markerOnClick(runningBusses.id);
+        });
+    }
   }
 
   createMarker(runningBus: RunningBus): L.marker {
     var marker;
 
-    console.log("test see me ", runningBus.passengers);
-    console.log(runningBus.passengers === undefined);
-
     if (runningBus.passengers != undefined) {
-      var temp = (runningBus.passengers.total / runningBus.bus.capacityBoundary) * 100;
+      var temp = (runningBus.passengers.total / runningBus.bus.capacityBoundary);
 
-      //console.log("Temp ",runningBus.passengers.total , runningBus.bus.capacityBoundary , runningBus.passengers.total / runningBus.bus.capacityBoundary * 100);
-      if (temp >= 75) {
+      if (temp >= 0.75) {
         marker = new L.marker([runningBus.longitude, runningBus.latitude], { icon: this.busIconDanger });
-      } else if (temp >= 50) {
+      } else if (temp >= 0.5) {
         marker = new L.marker([runningBus.longitude, runningBus.latitude], { icon: this.busIconWarning });
       } else {
         marker = new L.marker([runningBus.longitude, runningBus.latitude], { icon: this.busIcon });
       }
-
     } else {
       marker = new L.marker([runningBus.longitude, runningBus.latitude], { icon: this.busIconUnknown });
     }
@@ -128,15 +124,12 @@ export class DashboardMapShowRunningBussesComponent implements OnInit, AfterView
   }
 
   // remove marker
-  markerDelAgain() {
-    for (let i = 0; i < this.marker.length; i++) {
-      this.map.removeLayer(this.marker[i]);
-    }
+  markerDelAgain(marker) {
+    this.map.removeLayer(marker);
   }
 
   // click on marker
   markerOnClick(id) {
-    // console.log(id);
     let marker = this.marker.find(element => element.bus.id == id);
 
     if (marker.bus !== undefined) {
