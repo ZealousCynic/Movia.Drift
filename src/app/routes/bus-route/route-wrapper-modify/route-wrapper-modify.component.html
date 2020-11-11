@@ -1,11 +1,11 @@
-<mat-tab-group> 
+<mat-tab-group (selectedTabChange)="child2.referencingMap()"> 
     <mat-tab label="{{'bus_route.route_info' | translate}}">        
         <app-bus-route-route-info-modify [routeId]=routeId></app-bus-route-route-info-modify>
     </mat-tab>
-    <mat-tab label="{{'bus_route.route_bus_stop' | translate}}">
-        <app-bus-route-route-busstop-modify [routeId]=routeId></app-bus-route-route-busstop-modify>
+    <mat-tab label="{{'bus_route.route_bus_stop' | translate}}" >
+        <app-bus-route-route-busstop-modify #child2 [routeId]=routeId></app-bus-route-route-busstop-modify>
     </mat-tab>
-    <mat-tab label="{{'bus_route.route_bus_and_driver' | translate}}"> 
+    <mat-tab label="{{'bus_route.route_bus_and_driver' | translate}}" > 
         <app-bus-route-route-busdriver-modify [routeId]=routeId></app-bus-route-route-busdriver-modify>
     </mat-tab>
 </mat-tab-group> 

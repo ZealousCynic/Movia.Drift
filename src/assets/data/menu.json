@@ -1,30 +1,9 @@
 {
   "menu": [{
-      "route": "dashboard",
+      "route": "dashboard-map/show-running-busses",
       "name": "dashboard",
       "type": "link",
-      "icon": "dashboard",
-      "badge": {
-        "color": "red-500",
-        "value": "5"
-      }
-    },
-    {
-      "route": "animal",
-      "name": "animal",
-      "type": "sub",
-      "icon": "ballot",
-      "children": [{
-          "route": "animal-overview",
-          "name": "overview",
-          "type": "link"
-        },
-        {
-          "route": "animal-create",
-          "name": "create",
-          "type": "link"
-        }        
-      ]
+      "icon": "dashboard"
     },
     {
       "route": "bus-route",
@@ -109,28 +88,6 @@
           "name": "create",
           "type": "link"
         }   
-      ]
-    },      
-    {
-      "route": "sessions",
-      "name": "sessions",
-      "type": "sub",
-      "icon": "question_answer",
-      "children": [{
-          "route": "403",
-          "name": "403",
-          "type": "link"
-        },
-        {
-          "route": "404",
-          "name": "404",
-          "type": "link"
-        },
-        {
-          "route": "500",
-          "name": "500",
-          "type": "link"
-        }
       ]
     }
   ]

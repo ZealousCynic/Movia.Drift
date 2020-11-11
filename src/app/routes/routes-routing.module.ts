@@ -32,7 +32,8 @@ const routes: Routes = [
   { path: 'bus', loadChildren: () => import('./bus/bus.module').then(m => m.BusModule) },
   { path: 'bus-stop', loadChildren: () => import('./bus-stop/bus-stop.module').then(m => m.BusStopModule) },
   { path: 'bus-driver', loadChildren: () => import('./bus-driver/bus-driver.module').then(m => m.BusDriverModule) },
-  { path: 'bus-model', loadChildren: () => import('./bus-model/bus-model.module').then(m => m.BusModelModule) }
+  { path: 'bus-model', loadChildren: () => import('./bus-model/bus-model.module').then(m => m.BusModelModule) },
+  { path: 'dashboard-map', loadChildren: () => import('./dashboard-map/dashboard-map.module').then(m => m.DashboardMapModule) }
     ],
   },
   {
