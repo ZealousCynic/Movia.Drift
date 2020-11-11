@@ -23,6 +23,14 @@ export interface RunningBus {
     status: number;
     longitude: number;
     latitude: number;
+    passengers: Passengers
+}
+
+export interface Passengers {
+    "total": number,
+    "createDT": Date,
+    "longitude": number,
+    "latitude": number
 }
 
 export interface BusDto {

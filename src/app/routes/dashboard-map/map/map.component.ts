@@ -49,7 +49,9 @@ export class DashboardMapMapComponent implements AfterViewInit {
 
     // set new waypoint for map
     this.routingControl = L.Routing.control({
-      waypoints: waypoints
+      waypoints: waypoints,
+      draggableWaypoints: false,
+      addWaypoints: false
     }).addTo(this.map);
   }
 
