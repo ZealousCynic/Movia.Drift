@@ -14,6 +14,7 @@ const COMPONENTS_DYNAMIC = [];
     SharedModule,
     DashboardMapRoutingModule
   ],
+  exports: [DashboardMapMapComponent],  
   declarations: [
     ...COMPONENTS,
     ...COMPONENTS_DYNAMIC

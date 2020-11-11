@@ -1,3 +1,14 @@
 <page-header></page-header>
+<mat-card>
+    <mat-card-title>
+        <h1>hello world</h1>
+    </mat-card-title>
+    <div fxLayout="row warp" class="form-field-full" fxLayoutGap="8px">
+        <div fxFlex="35">
 
-<p>bus-overview works!</p>
+        </div>
+        <div fxFlex="60">
+            <app-dashboard-map [busRoutes]="mapRoute"></app-dashboard-map>            
+        </div>
+    </div>    
+</mat-card>

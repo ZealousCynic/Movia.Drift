@@ -81,7 +81,7 @@
     "driver": "Bus Driver",
     "driver.overview": "Oversigt",
     "driver.create": "Opret Chauffør",
-    "model": "Bus model",
+    "model": "Bus Model",
     "model.overview": "Oversigt",
     "model.create": "Opret Model"
   },
@@ -195,6 +195,19 @@
     "personnelNumber": "CPR.",
     "option": "Mulighed"
   },
+
+  "bus_model": {
+    "id": "ID",
+    "manufacturer": "Fabrikant",
+    "model": "Model",
+    "length": "Længde",
+    "width": "Bredde",
+    "height": "Højde",
+    "powerTrain": "Motor",
+    "option": "Mulighed",
+    "success_updated_bus_model": "Succes: Opdateret bus model",
+    "success_removed_bus_model": "Succes: Fjernet bus model"
+  },  
   "generel": {
     "submit": "Gem",
     "back": "Tilbage",

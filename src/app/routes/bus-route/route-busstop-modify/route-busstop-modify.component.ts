@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin, timer } from 'rxjs';
 import { map, startWith,debounceTime } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { 
@@ -12,21 +12,28 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { BusRouteRouteDeleteDialogComponent } from '../route-delete-dialog/route-delete-dialog.component';
+import * as L from 'leaflet';
+import 'leaflet-routing-machine';
 
 @Component({
   selector: 'app-bus-route-route-busstop-modify',
   templateUrl: './route-busstop-modify.component.html',
   styleUrls: ['./route-busstop-modify.component.scss']
 })
-export class BusRouteRouteBusstopModifyComponent implements OnInit {
+export class BusRouteRouteBusstopModifyComponent implements OnInit, AfterViewInit {
 
   @Input() routeId: number = 0;
+
+  public mapRoute:Array<ReturnBusStopWithOrderDto>;
+  private map : L.Map;
+  private routingControl: L.Routing.control;
+  @ViewChild('map') mapElement: ElementRef;
 
   findBusStopControl = new FormControl();
   selectBusOption: Array<ReturnRouteBusStopDto> = [];  
   filteredOptions: Observable<Array<ReturnRouteBusStopDto>>;
 
-  busStopOfRoute: Array<ReturnBusStopWithOrderDto> = [];
+  public busStopOfRoute: Array<ReturnBusStopWithOrderDto> = [];
 
   constructor(
     private router: Router,
@@ -36,14 +43,103 @@ export class BusRouteRouteBusstopModifyComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {
+
     this.initialBusstopSelectOpiton();
     this.initialBusstopListOfRoute();
+    
     this.filteredOptions = this.findBusStopControl.valueChanges.pipe(
       startWith(''),
       debounceTime(800),
       map(value => this._filter(value))
     );
+    
+  }
+
+    
+  ngAfterViewInit(): void {
+    this.initMap();
+  }
+  
+
+  referencingMap(){    
+    if (this.map)
+    {
+      this.map.invalidateSize();
+    }
+  }
+
+  private initMap(): void {
+        
+    L.Icon.Default.prototype.options.iconUrl = 'assets/images/map/marker-icon.png';
+    L.Icon.Default.prototype.options.iconRetinaUrl = 'assets/images/map/marker-icon-x2.png';
+    L.Icon.Default.prototype.options.shadowUrl = 'assets/images/map/marker-shadow.png';
+
+    // set up inital map
+    //this.mapElement.nativeElement
+    this.map = L.map(this.mapElement.nativeElement, {
+      center: [55.446944, 11.700770],
+      zoomControl: false,
+      zoom: 9
+    });
+
+    // set map tiles from openstreet map
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+    tiles.addTo(this.map);    
+
+    let source = timer(9000);
+    source.subscribe(val => {
+      this.map.invalidateSize();
+    });
+  }
+
+
+  changeMapRoute() {
+    let waypoints = new Array<L.latlng>();
+    // get waypoints from route
+    this.busStopOfRoute.forEach(routePoint => {
+      waypoints.push(L.latLng(routePoint.busStop.longitude, routePoint.busStop.latitude));      
+      //L.marker(L.latLng(routePoint.busStop.longitude, routePoint.busStop.latitude)).bindPopup('I\'m waypoint').addTo(this.map);
+    });
+    
+    this.addRoutingControl(waypoints);
+  }
+
+  // add new route to map
+  addRoutingControl(waypoints: any[]) {
+    if (this.routingControl != null)
+      this.removeRoutingControl();
+
+    console.log(this.busStopOfRoute);
+    console.log(this.busStopOfRoute[0]);
+    // set new waypoint for map
+    this.routingControl = L.Routing.control({
+      waypoints: waypoints
+    }).addTo(this.map);
+
+    //bus stop label
+    waypoints.forEach((routePoint,index) => {
+      L.marker(routePoint).bindPopup(this.busStopOfRoute[index].busStop.label).addTo(this.map);
+    });
+    
+    let source = timer(3000);
+    source.subscribe(val => {
+      if (waypoints.length > 0){
+        this.map.setView(waypoints[0], 14);
+      }
+    });
+
+  }
+
+  // remove current route
+  removeRoutingControl() {
+    if (this.routingControl != null) {
+      this.map.removeControl(this.routingControl);
+      this.routingControl = null;
+    }
   }
 
   private _filter(value: string): ReturnRouteBusStopDto[] {
@@ -53,7 +149,7 @@ export class BusRouteRouteBusstopModifyComponent implements OnInit {
     );
   }
 
-  ngBack() {
+  ngBack() {    
     this.router.navigate(['/bus-route/route-overview']);
   }
 
@@ -160,6 +256,7 @@ export class BusRouteRouteBusstopModifyComponent implements OnInit {
         res.forEach(item=>{
           this.busStopOfRoute.push(item);
         });
+        this.changeMapRoute();
       }
     );
     console.log('initialBusstopListOfRoute');

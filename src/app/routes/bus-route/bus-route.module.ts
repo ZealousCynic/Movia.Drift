@@ -14,7 +14,7 @@ const COMPONENTS_DYNAMIC = [];
 @NgModule({
   imports: [
     SharedModule,
-    BusRouteRoutingModule
+    BusRouteRoutingModule    
   ],
   declarations: [
     ...COMPONENTS,

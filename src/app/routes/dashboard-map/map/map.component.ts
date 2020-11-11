@@ -1,6 +1,6 @@
 import { ReturnRouteBusStopDto, ReturnBusStopWithOrderDto } from './../../../../domain/entity/route';
 import { mapRoute, LatLon } from './../../../../domain/entity/map';
-import { Component, AfterViewInit, Input } from '@angular/core';
+import { Component, AfterViewInit, Input, ViewChild, ElementRef } from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 
@@ -11,8 +11,11 @@ import 'leaflet-routing-machine';
 })
 export class DashboardMapMapComponent implements AfterViewInit {
   @Input() busRoutes: Array<ReturnBusStopWithOrderDto>;
-  private map;
+  private map : L.Map;
   private routingControl: L.Routing.control;
+
+  @ViewChild('map') mapElement: ElementRef;
+
 
 
   constructor() { }

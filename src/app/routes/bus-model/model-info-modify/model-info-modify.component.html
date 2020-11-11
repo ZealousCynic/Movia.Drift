@@ -1,3 +1,61 @@
-<page-header></page-header>
+<page-header *ngIf="busModelId == 0"></page-header>
+<mat-card>
+    <form [formGroup]="busModelInfoForm" (ngSubmit)="ngSubmit()">
+      <mat-card-title>
+        <div fxFlex="98" fxLayoutAlign="end center" fxLayoutGap="15px" >
+          <button mat-button (click)="ngBack()">
+            <mat-icon matTooltip="Back">arrow_back</mat-icon>
+            {{'generel.back' | translate}}
+          </button>
+          <button mat-raised-button color="primary" [disabled]="!busModelInfoForm.valid">
+            {{'generel.submit' | translate}}
+          </button>
+        </div>
+      </mat-card-title>
 
-<p>model-info-modify works!</p>
+      <div fxLayout="row warp" class="form-field-full" fxLayoutGap="8px">
+        <div fxFlex="48">
+          <mat-form-field appearance="standard">
+            <mat-label>{{'bus_model.manufacturer' | translate}}</mat-label>
+            <input matInput formControlName="manufacturer" />
+          </mat-form-field>
+        </div>
+  
+        <div fxFlex="48">
+          <mat-form-field appearance="standard">
+            <mat-label>{{'bus_model.model' | translate}}</mat-label>
+            <input matInput formControlName="model" />
+          </mat-form-field>
+        </div> 
+
+        <div fxFlex="48">
+            <mat-form-field appearance="standard">
+              <mat-label>{{'bus_model.length' | translate}}</mat-label>
+              <input matInput formControlName="length" />
+            </mat-form-field>
+        </div>
+
+        <div fxFlex="48">
+            <mat-form-field appearance="standard">
+              <mat-label>{{'bus_model.width' | translate}}</mat-label>
+              <input matInput formControlName="width" />
+            </mat-form-field>
+        </div>
+
+        <div fxFlex="48">
+            <mat-form-field appearance="standard">
+              <mat-label>{{'bus_model.height' | translate}}</mat-label>
+              <input matInput formControlName="height" />
+            </mat-form-field>
+        </div>     
+        
+        <div fxFlex="48">
+            <mat-form-field appearance="standard">
+              <mat-label>{{'bus_model.powerTrain' | translate}}</mat-label>
+              <input matInput formControlName="powerTrain" />
+            </mat-form-field>
+        </div>          
+
+      </div>
+    </form>
+  </mat-card>
