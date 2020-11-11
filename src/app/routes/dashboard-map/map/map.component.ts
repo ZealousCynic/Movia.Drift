@@ -11,7 +11,7 @@ import 'leaflet-routing-machine';
 })
 export class DashboardMapMapComponent implements AfterViewInit {
   @Input() busRoutes: Array<ReturnBusStopWithOrderDto>;
-  private map : L.Map;
+  private map: L.Map;
   private routingControl: L.Routing.control;
 
   @ViewChild('map') mapElement: ElementRef;
@@ -28,6 +28,10 @@ export class DashboardMapMapComponent implements AfterViewInit {
   ngOnChanges() {
     if (this.busRoutes !== undefined)
       this.changeMapRoute();
+  }
+
+  ngOnDestroy(): void{
+    this.map.remove();
   }
 
   changeMapRoute() {

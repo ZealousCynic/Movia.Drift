@@ -1,6 +1,6 @@
 {
   "menu": [{
-      "route": "dashboard",
+      "route": "dashboard-map/show-running-busses",
       "name": "dashboard",
       "type": "link",
       "icon": "dashboard"
