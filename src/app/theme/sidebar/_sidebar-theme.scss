@@ -6,11 +6,11 @@
 
   .matero-sidebar-header {
     color: mat-color($foreground, text);
-    background: mat-color($background, dialog);
-    border-bottom: 1px solid mat-color($foreground, divider);
+    background: mat-color($mat-yellow,200);
+    border-bottom: 1px solid mat-color($mat-yellow,400);
   }
 
   .matero-user-panel {
-    border-bottom: 1px solid mat-color($foreground, divider);
+    border-bottom: 1px solid mat-color($mat-yellow,400);
   }
 }

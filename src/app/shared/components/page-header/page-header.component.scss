@@ -1,9 +1,11 @@
+@import '../../../../styles/theming.scss';
+
 .matero-page-header {
   display: block;
   padding: 16px;
   margin: -16px -16px 16px;
-  background-color: #3f51b5;
-  color: #fff;
+  background-color: mat-color($primary);
+  color: $dark-primary-text;
 
   .matero-breadcrumb {
     margin-top: 8px;
