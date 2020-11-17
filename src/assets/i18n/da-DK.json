@@ -153,6 +153,18 @@
     "success_deleted_picture": "Success: Slettet billede",
     "success_deleted_sound": "Succes: Slettet lyd"
   },
+  "busTable":{
+    "id":"ID",
+    "registrationNumber":"Registreringsnummer",
+    "capacityBoundary":"Max Passagere",
+    "seatingPlace":"Sidde Pladser",
+    "standingPlace":"Stå Pladser",
+    "busModel":"Bus Model",
+    "model":"Model",
+    "length":"Længde",
+    "width":"Bredde",
+    "success_deleted_bus":"succes slettet bus"
+  },
   "bus_route": {
     "id": "ID",
     "label": "Rute Label",

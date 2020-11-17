@@ -1,63 +1,80 @@
 <page-header></page-header>
 <mat-form-field>
   <mat-label>Filter</mat-label>
-  <input matInput placeholder="Ex. Mia" #input />
+  <input matInput placeholder="Ex. BJ32262" #input />
 </mat-form-field>
+
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
-    <!-- ID Column -->
+    <!-- Column -->
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'animalTable.id' | translate }}</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'busTable.id' | translate }}</th>
       <td mat-cell *matCellDef="let row">{{ row.id }}</td>
     </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name" sticky>
+    <!-- Column -->
+    <ng-container matColumnDef="registrationNumber" sticky>
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ 'animalTable.name' | translate }}
+        {{ 'busTable.registrationNumber' | translate }}
       </th>
-      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.registrationNumber }}</td>
     </ng-container>
 
-    <!-- ScientificName Column -->
-    <ng-container matColumnDef="scientificName">
+    <!-- Column -->
+    <ng-container matColumnDef="capacityBoundary">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ 'animalTable.scientificName' | translate }}
+        {{ 'busTable.capacityBoundary' | translate }}
       </th>
-      <td mat-cell *matCellDef="let row">{{ row.scientificName }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.capacityBoundary }}</td>
     </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
+    <!-- Column -->
+    <ng-container matColumnDef="seatingPlace">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ 'animalTable.weight' | translate }}
+        {{ 'busTable.seatingPlace' | translate }}
       </th>
-      <td mat-cell *matCellDef="let row">{{ row.weight }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.seatingPlace }}</td>
     </ng-container>
 
-    <!-- Height Column -->
-    <ng-container matColumnDef="height">
+    <!-- Column -->
+    <ng-container matColumnDef="standingPlace">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ 'animalTable.height' | translate }}
+        {{ 'busTable.standingPlace' | translate }}
       </th>
-      <td mat-cell *matCellDef="let row">{{ row.height }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.standingPlace }}</td>
     </ng-container>
 
-    <!-- Animal Nature Column -->
-    <ng-container matColumnDef="animalNature">
+    <!-- Column -->
+    <ng-container matColumnDef="busModel">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ 'animalTable.animalNature' | translate }}
+        {{ 'busTable.busModel' | translate }}
       </th>
-      <td mat-cell *matCellDef="let row">{{ row.animalNature }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.busModel.manufacturer }}</td>
     </ng-container>
 
-    <!-- Animal Place Column -->
-    <ng-container matColumnDef="place">
+    <!-- Column -->
+    <ng-container matColumnDef="model">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ 'animalTable.place' | translate }}
+        {{ 'busTable.model' | translate }}
       </th>
-      <td mat-cell *matCellDef="let row">{{ row.place }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.busModel.model }}</td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="length">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'busTable.length' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.busModel.length }}</td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="width">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'busTable.width' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.busModel.width }}</td>
     </ng-container>
 
     <!-- Option Column -->
@@ -66,7 +83,6 @@
         {{ 'animalTable.option' | translate }}
       </th>
       <td mat-cell *matCellDef="let row">
-        <!-- routerLink="/animal/animal-modify" queryParams="{ id: 31 }" -->
         <button mat-icon-button matTooltip="Edit" color="primary" (click)="goModify(row.id)">
           <mat-icon>edit</mat-icon>
         </button>

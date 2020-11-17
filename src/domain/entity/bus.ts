@@ -1,18 +1,25 @@
 import { PaginationDto } from './animal';
-import { ReturnBusModelDto } from "./busmodel";
+import { CreateAndUpdateBusModelDto, ReturnBusModelDto } from "./busmodel";
 
 export interface ReturnBusDto {
     id: number;
-    registrationNumber: "string";
+    registrationNumber: string;
     capacityBoundary: number;
     seatingPlace: number;
     standingPlace: number;
     busModel: ReturnBusModelDto;
 }
 
+export interface DisplayBusDto {
+    registrationNumber: string;
+    capacityBoundary: string;
+    seatingPlace: string;
+    standingPlace: string;
+    busModel: CreateAndUpdateBusModelDto;
+}
+
 export interface UpdateBusDto {
-    id: number;
-    registrationNumber: "string";
+    registrationNumber: string;
     capacityBoundary: number;
     seatingPlace: number;
     standingPlace: number;
