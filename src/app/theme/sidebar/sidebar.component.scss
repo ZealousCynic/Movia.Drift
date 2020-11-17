@@ -1,5 +1,6 @@
 @import '../style/variables';
 @import '../style/breakpoints';
+@import '../../../styles/theming.scss';
 
 .matero-sidebar-header {
   position: relative;
@@ -20,13 +21,14 @@
 
   // Colorful
   .matero-header-white & {
-    background-color: white;
+    background-color: mat-color($mat-yellow,200);
   }
 }
 
 .matero-sidebar-main {
   height: calc(100% - #{$toolbar-height-desktop});
   overflow: auto;
+  background-color: mat-color($mat-yellow,100);
 
   @include bp-lt(small) {
     & {
