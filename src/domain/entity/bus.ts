@@ -18,6 +18,15 @@ export interface DisplayBusDto {
     busModel: CreateAndUpdateBusModelDto;
 }
 
+export interface CreateBusDto{
+    id: string;
+    registrationNumber: string;
+    capacityBoundary: string;
+    seatingPlace: string;
+    standingPlace: string;
+    busModel: ReturnBusModelDto;
+}
+
 export interface UpdateBusDto {
     registrationNumber: string;
     capacityBoundary: number;

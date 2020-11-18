@@ -163,7 +163,9 @@
     "model":"Model",
     "length":"Længde",
     "width":"Bredde",
-    "success_deleted_bus":"succes slettet bus"
+    "success_deleted_bus":"succes slettet bus",
+    "success_updated_bus":"succes opdaterede bus",
+    "success_create_bus":"succes oprettede bus"
   },
   "bus_route": {
     "id": "ID",

@@ -44,8 +44,8 @@ export class BusRepositoryService {
 
   createBus(
     updateBusDto: UpdateBusDto
-  ): Observable<UpdateBusDto> {
-    return this.http.post<UpdateBusDto>(
+  ): Observable<ReturnBusDto> {
+    return this.http.post<ReturnBusDto>(
       environment.apiUrlV1 + `busses`,
       updateBusDto
     );
@@ -60,5 +60,4 @@ export class BusRepositoryService {
       updateBusDto
     );
   }
-
 }

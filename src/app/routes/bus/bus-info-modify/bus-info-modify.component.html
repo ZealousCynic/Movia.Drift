@@ -1,3 +1,59 @@
-<page-header></page-header>
+<mat-card>
+  <form [formGroup]="busForm" (ngSubmit)="ngSubmit()">
+    <mat-card-title>
+      <div fxFlex="98" fxLayoutAlign="end center" fxLayoutGap="15px">
+        <button mat-button (click)="ngBack()">
+          <mat-icon matTooltip="Back">arrow_back</mat-icon>
+          {{'generel.back' | translate}}
+        </button>
+        <button mat-raised-button color="primary"
+                [disabled]="!busForm.valid || isSubmitBtnDisabled">
+          {{'generel.submit' | translate}}
+        </button>
+      </div>
+    </mat-card-title>
+    <div fxLayout="row warp" class="form-field-full" fxLayoutGap="8px">
 
-<p>bus-info-modify works!</p>
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'busTable.registrationNumber' | translate}}</mat-label>
+          <input matInput formControlName="registrationNumber" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'busTable.capacityBoundary' | translate}}</mat-label>
+          <input matInput formControlName="capacityBoundary" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'busTable.seatingPlace' | translate}}</mat-label>
+          <input matInput formControlName="seatingPlace" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'busTable.standingPlace' | translate}}</mat-label>
+          <input matInput formControlName="standingPlace" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="96">
+        <mat-form-field appearance="standard">
+          <mat-label>{{'busTable.busModel' | translate}}</mat-label>
+          <mat-select formControlName="busModel">
+            <mat-option *ngFor="let busModel of busModels" [value]="busModel.id">
+              {{ busModel.manufacturer }} : {{busModel.model}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="48"></div>
+    </div>
+  </form>
+</mat-card>
