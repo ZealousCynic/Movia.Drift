@@ -4,8 +4,9 @@ import { BusRoutingModule } from './bus-routing.module';
 import { BusBusOverviewComponent } from './bus-overview/bus-overview.component';
 import { BusBusInfoModifyComponent } from './bus-info-modify/bus-info-modify.component';
 import { DashboardMapModule } from '../dashboard-map/dashboard-map.module';
+import { BusBusDeleteDialogComponent } from './bus-delete-dialog/bus-delete-dialog.component';
 
-const COMPONENTS = [BusBusOverviewComponent, BusBusInfoModifyComponent];
+const COMPONENTS = [BusBusOverviewComponent, BusBusInfoModifyComponent, BusBusDeleteDialogComponent];
 const COMPONENTS_DYNAMIC = [];
 
 @NgModule({

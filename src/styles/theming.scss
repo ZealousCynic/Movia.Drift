@@ -8,13 +8,13 @@
 //
 // Light style
 //
-$primary: mat-palette($mat-indigo);
-$accent: mat-palette($mat-pink, A200, A100, A400);
+@include mat-core();
+
+$primary: mat-palette($mat-yellow);
+$accent: mat-palette($mat-yellow, 900);
 $theme: mat-light-theme($primary, $accent);
 
 $config: mat-typography-config();
-
-@include mat-core();
 
 @include angular-material-theme($theme);
 @include matero-admin-theme($theme);
