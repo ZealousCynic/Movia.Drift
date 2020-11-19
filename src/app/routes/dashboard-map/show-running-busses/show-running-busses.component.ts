@@ -9,6 +9,7 @@ import 'leaflet-routing-machine';
 import { element } from 'protractor';
 import { concat, forkJoin, interval, Subscription } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
+import { Router } from '@angular/router';
 
 export interface BusMarker {
   bus: RunningBus;
@@ -32,7 +33,8 @@ export class DashboardMapShowRunningBussesComponent implements OnInit {
 
 
   constructor(
-    private mapRepositoryService: MapRepositoryService
+    private mapRepositoryService: MapRepositoryService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -72,13 +74,14 @@ export class DashboardMapShowRunningBussesComponent implements OnInit {
   setMarker(runningBusses: RunningBus) {
     // check if marker exsists
     // if not create if it does exsists update marker and override
-    let popupMessage = '<b>' + runningBusses.busDriver.firstName + ' ' + runningBusses.busDriver.lastName + '</b><br>Route ID ' + runningBusses.routeID + '<br>Bus Registration ' + runningBusses.bus.registrationNumber;
+    let popupMessage = '<b>' + runningBusses.busDriver.firstName + ' ' + runningBusses.busDriver.lastName + '</b><br>Bus Registration ' + runningBusses.bus.registrationNumber + "<br>Total Passengers " + runningBusses.passengers.total;
     let busMarker = { bus: null, marker: null };
 
     busMarker.marker = this.createMarker(runningBusses);
     busMarker.bus = runningBusses;
 
     var updateBus = this.marker.findIndex(marker => marker.bus.id == runningBusses.id);
+    // update
     if (updateBus != -1) {
       this.markerDelAgain(this.marker[updateBus].marker);
 
@@ -89,9 +92,15 @@ export class DashboardMapShowRunningBussesComponent implements OnInit {
         .bindPopup(popupMessage)
         .on("click", () => {
           this.markerOnClick(runningBusses.id);
+        }).on('mouseover', function (e) {
+          this.openPopup();
+        }).on('mouseout', function (e) {
+          this.closePopup();
         });
 
-    } else {
+    }
+    // create marker
+    else {
       this.marker.push({ bus: runningBusses, marker: busMarker.marker });
 
       let index = this.marker.findIndex(marker => marker.bus.id == runningBusses.id);
@@ -100,7 +109,12 @@ export class DashboardMapShowRunningBussesComponent implements OnInit {
         .bindPopup(popupMessage)
         .on("click", () => {
           this.markerOnClick(runningBusses.id);
+        }).on('mouseover', function (e) {
+          this.openPopup();
+        }).on('mouseout', function (e) {
+          this.closePopup();
         });
+
     }
   }
 
@@ -133,7 +147,7 @@ export class DashboardMapShowRunningBussesComponent implements OnInit {
     let marker = this.marker.find(element => element.bus.id == id);
 
     if (marker.bus !== undefined) {
-      this.selectedRunningBus = marker.bus;
+      this.router.navigate(['bus-route/route-wrapper-modify'], { queryParams: { id: marker.bus.routeID } });
     }
   }
 
