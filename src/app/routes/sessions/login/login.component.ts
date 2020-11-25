@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TokenService, StartupService, SettingsService } from '@core';
 import { LoginDto, IntegrationRepositoryService } from '../../../../domain/index';
 import { HttpErrorResponse } from '@angular/common/http';
+import * as sha512 from 'js-sha512'
 import { SymmetricEncryptionService } from '@shared/services/symmetric.encryption.service';
 
 
@@ -44,9 +45,11 @@ export class LoginComponent implements OnInit {
 
   login() {
 
+    let hashPW = sha512.sha512(this.password.value);
+
     let loginDto: LoginDto = {
       email: this.username.value,
-      passWord: this.password.value,
+      passWord: hashPW,
       //passWord: this.symmetricEncryptionService.Encrypt(this.password),
     };
     

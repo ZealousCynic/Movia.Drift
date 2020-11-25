@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "sec" : "ng serve --ssl --ssl-key .\\cert\\localhost.key --ssl-cert .\\cert\\localhost.crt",
+    "sec": "ng serve --ssl --ssl-key .\\cert\\localhost.key --ssl-cert .\\cert\\localhost.crt",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -39,6 +39,7 @@
     "@ngx-translate/http-loader": "~4.0.0",
     "@schematics/angular": "^9.1.8",
     "crypto-js": "^4.0.0",
+    "js-sha512": "^0.8.0",
     "leaflet": "1.5.1",
     "leaflet-routing-machine": "^3.2.12",
     "moment": "^2.27.0",
