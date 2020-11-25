@@ -49,8 +49,8 @@ export class LoginComponent implements OnInit {
 
     let loginDto: LoginDto = {
       email: this.username.value,
+      //passWord: this.password.value,
       passWord: hashPW,
-      //passWord: this.symmetricEncryptionService.Encrypt(this.password),
     };
     
     this.integrationRepositoryService.getToken(loginDto).subscribe(
