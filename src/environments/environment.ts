@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   useHash: true,
   hmr: false,
-  apiUrlV1: 'http://svendeprove.web-api.eu.ngrok.io/api/v1/',
+  apiUrlV1: 'http://localhost:58287/api/v1/',
   assetsResourcesUrl: 'http://svendeprove.web-api.eu.ngrok.io/'
 };
 

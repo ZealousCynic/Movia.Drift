@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { TokenService, StartupService, SettingsService } from '@core';
 import { LoginDto, IntegrationRepositoryService } from '../../../../domain/index';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SymmetricEncryptionService } from '@shared/services/symmetric.encryption.service';
+
 
 
 @Component({
@@ -19,7 +21,8 @@ export class LoginComponent implements OnInit {
     private token: TokenService,
     private startup: StartupService,
     private settings: SettingsService,
-    private integrationRepositoryService: IntegrationRepositoryService
+    private integrationRepositoryService: IntegrationRepositoryService,
+    private symmetricEncryptionService: SymmetricEncryptionService
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
@@ -37,11 +40,14 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
+
+
   login() {
 
     let loginDto: LoginDto = {
       email: this.username.value,
       passWord: this.password.value,
+      //passWord: this.symmetricEncryptionService.Encrypt(this.password),
     };
     
     this.integrationRepositoryService.getToken(loginDto).subscribe(

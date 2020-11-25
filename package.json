@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "sec" : "ng serve --ssl --ssl-key .\\cert\\localhost.key --ssl-cert .\\cert\\localhost.crt",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -37,6 +38,9 @@
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "~4.0.0",
     "@schematics/angular": "^9.1.8",
+    "crypto-js": "^4.0.0",
+    "leaflet": "1.5.1",
+    "leaflet-routing-machine": "^3.2.12",
     "moment": "^2.27.0",
     "ng-matero": "^9.7.2",
     "ngx-progressbar": "^6.0.3",
@@ -45,9 +49,7 @@
     "rxjs": "~6.5.4",
     "screenfull": "^5.0.2",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2",
-    "leaflet": "1.5.1",
-    "leaflet-routing-machine": "^3.2.12"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1002.0",
